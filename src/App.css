@@ -6,15 +6,19 @@
   list-style-type: none;
   color: #19191d;
 }
+html {
+  height: 100vh;
+  background-color: #19191d;
+}
 
 .Loading {
   text-align: center;
   margin: 10% auto;
   font-size: 2rem;
+  font-weight: 400;
+  color: #e16b00;
 }
-.html {
-  background-color: #19191d;
-}
+
 .App {
   background-color: #19191d;
 }
@@ -142,10 +146,9 @@ h1 {
     text-align: start;
     flex-wrap: nowrap;
     flex-direction: row;
-    align-content: flex-start;
-    justify-content: space-between;
-    align-items: center;
     border: grey solid;
+    justify-content: space-between;
+    align-items: stretch;
   }
   h3 {
     font-size: 16px;
