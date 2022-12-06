@@ -9,3 +9,11 @@ export const getReviews = () => {
     return reviews;
   });
 };
+
+export const getCommentsById = () => {
+  return gamesApi
+    .get(`/reviews/:review_id/comments`)
+    .then(({ data: { comments } }) => {
+      return comments;
+    });
+};
