@@ -10,10 +10,8 @@ export const getReviews = () => {
   });
 };
 
-export const getCommentsById = () => {
-  return gamesApi
-    .get(`/reviews/:review_id/comments`)
-    .then(({ data: { comments } }) => {
-      return comments;
-    });
+export const getReviewById = (review_id) => {
+  return gamesApi.get(`/reviews/${review_id}`).then((res) => {
+    return res.data.review;
+  });
 };

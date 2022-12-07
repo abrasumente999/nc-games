@@ -1,22 +1,22 @@
 import "./App.css";
-import { getReviews } from "./api";
 import { Header } from "./components/Header";
 import { Nav } from "./components/Nav";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useParams, BrowserRouter } from "react-router-dom";
 import { Home } from "./components/Home";
 import { Reviews } from "./components/Reviews";
+import { SingleReview } from "./components/SingleReview";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <Nav />
-        <Header header="NC Games" />
       </header>
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/reviews" element={<Reviews />} />
+          <Route path="/reviews/:review_id" element={<SingleReview />} />
         </Routes>
       </main>
     </div>
