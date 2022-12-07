@@ -7,6 +7,7 @@
 }
 html {
   height: 100%;
+  width: 100%;
   font-size: 16px;
   background-color: #f6f2f0;
 }
@@ -24,9 +25,9 @@ html {
 }
 
 h1 {
-  padding: 3rem 0 4rem 0;
+  padding: 1em 0 1em 0;
   font-weight: 300;
-  font-size: 4rem;
+  font-size: 4em;
   background-color: #19191d;
   color: #e16b00;
   text-align: center;
@@ -36,6 +37,7 @@ p {
 }
 
 .Nav {
+  width: 100%;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
@@ -94,9 +96,9 @@ p {
 
 .Reviews--li_text p {
   font-size: 1em;
-  text-align: right;
+  text-align: left;
   line-height: 1.2em;
-  text-align-last: justify;
+  padding: 0;
 }
 
 .SingleReview--Header h2 {
@@ -120,6 +122,23 @@ p {
   font-size: 1rem;
   padding: 1rem 0rem;
 }
+
+.Comments {
+  margin: 1rem 0rem;
+}
+.Comments--header {
+  width: 100%;
+  display: flex;
+}
+.Comments ul {
+  margin: 1rem 0;
+  border-top: #19191d solid 1px;
+}
+.Comments--li_item {
+  padding: 2rem 0;
+  border-bottom: #19191d solid 1px;
+}
+
 @media only screen and (max-width: 768px) {
   .Reviews--Link {
     width: 60%;
@@ -159,9 +178,11 @@ p {
     justify-content: flex-start;
     align-items: stretch;
   }
+
   .SingleReview--Header h2,
   span,
   time,
+  aside,
   .SingleReview--ReviewBody {
     margin: 1rem;
     max-width: 90%;
@@ -221,11 +242,13 @@ p {
   .SingleReview--ReviewBody,
   .SingleReview--Header h2,
   .SingleReview--Header span,
-  time {
+  time,
+  aside {
     padding: 1rem 0;
     margin: auto;
     display: flex;
-    max-width: 70%;
+    width: 70%;
+    max-width: 1250px;
     flex-direction: column;
   }
 
@@ -233,8 +256,11 @@ p {
     font-size: 3em;
   }
   .SingleReview--Header_img {
+    display: flex;
+    margin: auto;
     width: 100%;
-    height: 20rem;
+    height: 25rem;
     object-fit: cover;
+    max-width: 1250px;
   }
 }

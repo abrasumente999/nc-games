@@ -32,7 +32,10 @@ export const Reviews = () => {
                     className="Reviews--Link"
                     to={`/reviews/${review.review_id}`}
                   >
-                    <li key={review.review_id} className="Reviews--li_item">
+                    <li
+                      key={`review${review.review_id}`}
+                      className="Reviews--li_item"
+                    >
                       <img
                         className="Reviews--review_img"
                         src={review.review_img_url}
