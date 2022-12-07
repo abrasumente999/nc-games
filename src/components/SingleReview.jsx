@@ -1,15 +1,18 @@
-import { useState, useEffect } from "react";
-import { getReviewById } from "../api";
+import { useState, useEffect, useContext } from "react";
+import { getReviewById, patchVotes } from "../api";
 import { useParams, Link } from "react-router-dom";
 import { Header } from "./Header";
 import { dateFormatter } from "../utils";
 import { VoteButton } from "./VoteButton";
 import { Comments } from "./Comments";
+import { ReviewContext } from "./contexts/Review";
 
 export const SingleReview = () => {
-  const [review, setReview] = useState({});
+  const { review, setReview } = useContext(ReviewContext);
   const [loading, setLoading] = useState(true);
   const { review_id } = useParams();
+
+  console.log(review);
 
   useEffect(() => {
     getReviewById(review_id).then((data) => {
@@ -42,7 +45,7 @@ export const SingleReview = () => {
             <p>{review.review_body}</p>
             <section className="SingleReview--Votes">
               <p>
-                Vote button here <VoteButton />
+                <VoteButton review={review} />
               </p>
             </section>
             <section className="SingleReview--Comments">

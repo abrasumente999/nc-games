@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getCommentsByReviewId } from "../api";
+import { getCommentsByReviewId, patchVotes } from "../api";
 import { dateFormatter } from "../utils";
 
 export const Comments = (props) => {
