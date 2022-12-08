@@ -7,6 +7,7 @@
   padding-inline-start: 0px;
   margin-block-start: 0em;
   margin-block-end: 0em;
+  text-decoration: none;
 }
 html {
   height: 100%;
@@ -35,6 +36,7 @@ h1 {
   color: #e16b00;
   min-width: 300px;
   text-align: center;
+  transition: opacity 0.5s;
 }
 
 .Nav {
@@ -57,14 +59,47 @@ h1 {
 .Nav a:hover {
   color: #e16b00;
   text-decoration: none;
+  transition-duration: 0.5s;
 }
 
-.Reviews--Content_container {
+.Home h2 {
+  margin: 2em;
+  font-weight: 200;
+  font-size: 2em;
+  text-align: center;
+}
+
+.Home--loginLink:hover {
+  opacity: 0.5;
+  transition-duration: 0.5s;
+}
+
+.Home--loginLink {
+  margin: 1em auto;
+  height: 100%;
+  width: 40%;
+  padding: 1em;
+  background-color: #e16b00;
+  color: #f6f2f0;
+  font-weight: 250;
+  font-size: 1.5rem;
+  color: #f6f2f0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.Reviews--Content_container,
+.Users--Content_container {
   margin: 0 auto;
   max-width: 1280px;
 }
 
-.Reviews--Container ul {
+.Reviews--Container ul,
+.Users--Container ul {
   width: 90%;
   margin: 0 auto;
   padding-top: 1em;
@@ -74,7 +109,8 @@ h1 {
   min-width: 300px;
 }
 
-.Reviews--li_item {
+.Reviews--li_item,
+.Users--li_item {
   max-width: 600px;
   text-decoration: none;
   background-color: #f6f2f0;
@@ -94,7 +130,8 @@ h1 {
   font-size: 1em;
   padding: 0.5em;
 }
-.Reviews--Link h3 {
+.Reviews--Link h3,
+.Users--li_text {
   color: #e16b00;
   font-size: 1.4em;
   font-weight: 400;
@@ -104,6 +141,10 @@ h1 {
 .Reviews--li_text {
   padding-left: 1em;
   width: 100%;
+  height: 100%;
+}
+.Users--li_text {
+  padding-left: 1em;
   height: 100%;
 }
 
@@ -145,7 +186,6 @@ h1 {
 
 @media only screen and (max-width: 768px) {
   .Reviews--Content_container {
-    margin: 0 auto;
     width: 100%;
     height: 100%;
   }
@@ -176,6 +216,34 @@ h1 {
     align-items: stretch;
   }
 
+  .Users--li_item {
+    padding: 1.5em;
+
+    background-color: antiquewhite;
+    width: 60%;
+    min-width: 320px;
+    margin: 2em 0;
+    display: flex;
+    font-size: 0.7em;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-evenly;
+  }
+  .Users--avatar {
+    height: 14em;
+    width: 14em;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    background-color: #fff;
+    justify-content: center;
+  }
+  .Users--avatar_img {
+    width: 60%;
+    height: auto;
+    margin: auto;
+  }
+
   .SingleReview--Header h2,
   span,
   time,
@@ -188,20 +256,20 @@ h1 {
   .SingleReview--Header_img {
     width: 100%;
     height: 15rem;
+
     object-fit: cover;
   }
 }
 
 @media only screen and (min-width: 768px) {
   .Reviews--Content_container {
-    margin: 0 auto;
     width: 100%;
     height: 100%;
   }
 
-  .Reviews--Container ul {
+  .Reviews--Container ul,
+  .Users--Container ul {
     width: 100%;
-    margin: 0 auto;
     padding-top: 1em;
     display: flex;
     flex-direction: row;
@@ -218,7 +286,6 @@ h1 {
 
   .Reviews--li_item {
     padding: 2em;
-    /* height: 30em; */
     height: 15rem;
     background-color: antiquewhite;
     width: 44%;
@@ -229,11 +296,31 @@ h1 {
     align-items: stretch;
     justify-content: flex-start;
   }
-
+  .Users--li_item {
+    padding: 2em;
+    height: 15rem;
+    background-color: antiquewhite;
+    width: 44%;
+    margin: 1rem;
+    display: flex;
+    font-size: 0.7em;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
   .Reviews--review_img {
     max-width: 18em;
     height: 100%;
     object-fit: cover;
+  }
+  .Users--avatar {
+    height: 14em;
+    width: 14em;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    background-color: #fff;
+    justify-content: center;
   }
 
   .SingleReview--ReviewBody,

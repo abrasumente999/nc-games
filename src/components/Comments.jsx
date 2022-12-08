@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getCommentsByReviewId } from "../api";
-import { dateFormatter } from "../utils";
+import { dateFormatter, commentMapper } from "../utils";
+import { CommentAdder } from "./CommentAdder";
 
 export const Comments = (props) => {
   const [comments, setComments] = useState([]);
@@ -25,26 +26,9 @@ export const Comments = (props) => {
       <section className="Comments">
         <div className="Comments--header">
           <h3>Comments</h3>
-          <button>Leave a comment</button>
+          <CommentAdder review_id={review_id} setComments={setComments} />
         </div>
-
-        {!comments ? (
-          <p>No Comments</p>
-        ) : (
-          <ul>
-            {comments.map((comment) => {
-              return (
-                <li key={comment.comment_id} className="Comments--li_item">
-                  <article className="Comments--comment_container">
-                    <h5>{comment.author}</h5>
-                    <p>{comment.body}</p>
-                    <span>Likes: {comment.votes}</span>
-                  </article>
-                </li>
-              );
-            })}
-          </ul>
-        )}
+        {!comments ? <p>No Comments</p> : <ul>{commentMapper(comments)}</ul>}
       </section>
     </>
   );

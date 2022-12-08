@@ -11,8 +11,8 @@ export const getReviews = () => {
 };
 
 export const getReviewById = (review_id) => {
-  return gamesApi.get(`/reviews/${review_id}`).then((res) => {
-    return res.data.review;
+  return gamesApi.get(`/reviews/${review_id}`).then(({ data: { review } }) => {
+    return review;
   });
 };
 
@@ -28,5 +28,23 @@ export const patchVotes = (review_id, vote) => {
   };
   return gamesApi.patch(`/reviews/${review_id}`, patchBody).then(({ data }) => {
     return data.review;
+  });
+};
+
+export const postComment = (review_id, comment) => {
+  const postBody = {
+    username: comment.username,
+    body: comment.body,
+  };
+  return gamesApi
+    .post(`reviews/${review_id}/comments`, postBody)
+    .then(({ data }) => {
+      return data;
+    });
+};
+
+export const getUsers = () => {
+  return gamesApi.get("/users").then(({ data }) => {
+    return data;
   });
 };
