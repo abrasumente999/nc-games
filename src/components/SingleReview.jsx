@@ -1,44 +1,67 @@
-import { useState, useEffect } from "react";
-import { getCommentsById } from "../api";
+import { useState, useEffect, useContext } from "react";
+import { getReviewById } from "../api";
+import { useParams, Link } from "react-router-dom";
+import { Header } from "./Header";
+import { dateFormatter } from "../utils";
+import { VoteButton } from "./VoteButton";
+import { Comments } from "./Comments";
+import { ReviewContext } from "./contexts/Review";
 
-export const SingleReview = (props, { id }) => {
-  const { reviews } = props;
-  console.log(reviews);
-  let formmattedDates = [...reviews];
+export const SingleReview = () => {
+  const { review, setReview } = useContext(ReviewContext);
+  const [loading, setLoading] = useState(true);
+  const [votes, setVotes] = useState(0);
+  const { review_id } = useParams();
 
-  formmattedDates.forEach((review) => {
-    const parsedDate = new Date(review.created_at).toLocaleDateString("en-GB");
-    review.date = parsedDate;
-  });
+  useEffect(() => {
+    getReviewById(review_id).then((data) => {
+      setReview(dateFormatter(data));
+      setVotes(data.votes);
+      setLoading(false);
+    });
+  }, [review_id]);
 
-  console.log(formmattedDates);
+  return loading ? (
+    <p className="Loading">... Loading</p>
+  ) : (
+    <>
+      <Header header="NC Games" />
+      <div className="SingleReview">
+        <header className="SingleReview--Header">
+          <img
+            className="SingleReview--Header_img"
+            src={review.review_img_url}
+            alt={`${review.title}`}
+          />
+          <div className="SingleReview--Header">
+            <h2>{review.title}</h2>
+            <span>By {review.owner}</span>
+            <time>{review.created_at}</time>
+          </div>
+        </header>
 
-  return (
-    <article className="SingleReview--Container">
-      {formmattedDates.map((review) => {
-        return (
-          <li className="SingleReview--li_item" key={review.review_id}>
-            <img
-              className="SingleReview--review_img"
-              src={review.review_img_url}
-              alt="Review"
-            />
-
-            <div className="SingleReview--li_text">
-              <h3>{review.title}</h3>
-              <p>By {review.owner}</p>
-              <p>On {review.date}</p>
-
-              <p className="SingleReview--VotesComments">
-                <p className="SingleReview--p">
-                  Comments: {review.comment_count}
-                </p>
-                <p className="SingleReview--p">Votes: {review.votes}</p>
+        <main>
+          <article className="SingleReview--ReviewBody">
+            <p>{review.review_body}</p>
+            <section className="SingleReview--Votes">
+              <p>
+                <VoteButton votes={votes} setVotes={setVotes} review={review} />
               </p>
-            </div>
-          </li>
-        );
-      })}
-    </article>
+            </section>
+            <section className="SingleReview--Comments">
+              <Comments review_id={review.review_id} />
+            </section>
+          </article>
+          <aside>
+            <Link
+              className="SingleReview--NextReviewLink"
+              to={`/reviews/${+review.review_id + 1}`}
+            >
+              <h3>Read next review</h3>
+            </Link>
+          </aside>
+        </main>
+      </div>
+    </>
   );
 };
