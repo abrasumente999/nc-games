@@ -4,17 +4,26 @@ import { patchVotes } from "../api";
 
 export const VoteButton = ({ votes, setVotes }) => {
   const [err, setErr] = useState(null);
+  const [isClicked, setIsClicked] = useState(false);
   const { review_id } = useParams();
 
   const handleVote = () => {
-    setVotes(votes + 1);
-
-    setErr(null);
-    patchVotes(review_id).catch((err) => {
+    if (isClicked) {
       setVotes(votes - 1);
-      setErr("Something went wrong, please try again.");
-    });
+      patchVotes(review_id, -1).catch((err) => {
+        setVotes(votes + 1);
+        setErr("Something went wrong, please try again.");
+      });
+    } else {
+      setVotes(votes + 1);
+      patchVotes(review_id, 1).catch((err) => {
+        setVotes(votes - 1);
+        setErr("Something went wrong, please try again.");
+      });
+    }
+    setIsClicked(!isClicked);
   };
+
   if (err) return <span>{err}</span>;
   return (
     <button onClick={handleVote}>
