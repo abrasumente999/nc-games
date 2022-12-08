@@ -5,7 +5,7 @@ import { Header } from "./Header";
 import { dateFormatter } from "../utils";
 
 export const Reviews = () => {
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,17 +24,17 @@ export const Reviews = () => {
       <Header header="Reviews" />
       <main>
         <section className="Reviews--Content_container">
-          <ul>
-            <article className="Reviews--Container">
+          <article className="Reviews--Container">
+            <ul>
               {formattedReviews.map((review) => {
                 return (
-                  <Link
-                    className="Reviews--Link"
-                    to={`/reviews/${review.review_id}`}
+                  <li
+                    className="Reviews--li_item"
+                    key={`review${review.review_id}`}
                   >
-                    <li
-                      key={`review${review.review_id}`}
-                      className="Reviews--li_item"
+                    <Link
+                      className="Reviews--Link"
+                      to={`/reviews/${review.review_id}`}
                     >
                       <img
                         className="Reviews--review_img"
@@ -47,12 +47,12 @@ export const Reviews = () => {
                         <p>Comments: {review.comment_count}</p>
                         <p>Votes: {review.votes}</p>
                       </div>
-                    </li>
-                  </Link>
+                    </Link>
+                  </li>
                 );
               })}
-            </article>
-          </ul>
+            </ul>
+          </article>
         </section>
       </main>
     </>

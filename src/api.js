@@ -24,9 +24,9 @@ export const getCommentsByReviewId = (review_id) => {
 
 export const patchVotes = (review_id) => {
   const patchBody = {
-    increase: 1,
+    inc_votes: 1,
   };
   return gamesApi.patch(`/reviews/${review_id}`, patchBody).then(({ data }) => {
-    return data;
+    return data.review;
   });
 };

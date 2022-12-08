@@ -1,16 +1,25 @@
-import { useContext } from "react";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { patchVotes } from "../api";
-import { ReviewContext } from "./contexts/Review";
 
-export const VoteButton = (props) => {
-  const { review, setReview } = useContext(ReviewContext);
-  const handleVote = (review_id) => {
-    patchVotes(review_id).then((updatedReview) => {});
+export const VoteButton = ({ votes, setVotes }) => {
+  const [err, setErr] = useState(null);
+  const { review_id } = useParams();
+
+  const handleVote = () => {
+    setVotes(votes + 1);
+
+    setErr(null);
+    patchVotes(review_id).catch((err) => {
+      setVotes(votes - 1);
+      setErr("Something went wrong, please try again.");
+    });
   };
-
+  if (err) return <span>{err}</span>;
   return (
-    <button onClick={() => handleVote(review.review_id)}>
-      {review.votes} <span aria-label="votes for this review">👍</span>
+    <button onClick={handleVote}>
+      {votes}
+      <span aria-label="votes for this review">Like 👍</span>
     </button>
   );
 };

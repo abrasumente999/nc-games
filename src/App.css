@@ -4,6 +4,9 @@
   text-align: left;
   box-sizing: border-box;
   list-style-type: none;
+  padding-inline-start: 0px;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
 }
 html {
   height: 100%;
@@ -30,14 +33,13 @@ h1 {
   font-size: 4em;
   background-color: #19191d;
   color: #e16b00;
+  min-width: 300px;
   text-align: center;
-}
-p {
-  padding: 1em 0;
 }
 
 .Nav {
   width: 100%;
+  min-width: 300px;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
@@ -57,54 +59,57 @@ p {
   text-decoration: none;
 }
 
-.Reviews--Link {
-  max-width: 600px;
-  min-width: 300px;
-  width: 45%;
-  height: auto;
-  min-width: 300px;
-  max-height: 300px;
+.Reviews--Content_container {
+  margin: 0 auto;
+  max-width: 1280px;
+}
+
+.Reviews--Container ul {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 1em;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 300px;
+}
+
+.Reviews--li_item {
+  max-width: 600px;
   text-decoration: none;
-  border: #19191d solid;
-  margin: 2em 0;
   background-color: #f6f2f0;
-  align-content: stretch;
-  align-items: stretch;
+}
+
+.Reviews--Link {
+  font-size: 1em;
+  font-weight: 400;
+  text-decoration: none;
+  min-width: 300px;
 }
 .Reviews--Link a:hover {
   cursor: pointer;
 }
 .Reviews--Link p {
   color: #19191d;
+  font-size: 1em;
+  padding: 0.5em;
+}
+.Reviews--Link h3 {
+  color: #e16b00;
+  font-size: 1.4em;
+  font-weight: 400;
+  min-width: 100px;
 }
 
 .Reviews--li_text {
-  height: auto;
-  width: 100%;
-  font-size: 0.9em;
   padding-left: 1em;
-}
-
-.Reviews--li_text h3 {
-  color: #e16b00;
-  font-size: 1em;
-  font-weight: 400;
-  line-height: 1em;
-  padding-bottom: 1rem;
-}
-
-.Reviews--li_text p {
-  font-size: 1em;
-  text-align: left;
-  line-height: 1.2em;
-  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .SingleReview--Header h2 {
   font-size: 2em;
 }
-
 .SingleReview--Header h4 {
   font-weight: 400;
   font-size: 0.9em;
@@ -116,7 +121,6 @@ p {
 .SingleReview--Header span {
   padding-right: 3em;
 }
-
 .SingleReview--ReviewBody,
 .SingleReview--Comments {
   font-size: 1rem;
@@ -140,42 +144,35 @@ p {
 }
 
 @media only screen and (max-width: 768px) {
-  .Reviews--Link {
-    width: 60%;
-    height: auto;
-    display: flex;
-    text-decoration: none;
-    border: #19191d solid;
-    margin: 1.5em;
-  }
-  .Reviews--Container {
-    display: flex;
-    margin: 2rem;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
-  }
   .Reviews--Content_container {
-    margin: auto;
+    margin: 0 auto;
     width: 100%;
     height: 100%;
-    max-width: 850px;
   }
+
   .Reviews--review_img {
-    width: 9em;
-    height: 9em;
+    max-width: 15em;
+    max-height: 15em;
     object-fit: cover;
   }
 
   .Reviews--li_item {
+    padding: 1.5em;
+    height: 19em;
+    background-color: antiquewhite;
     width: 100%;
-    height: 100%;
-    padding: 2em 1.5em;
-    display: inline-flex;
-    text-align: start;
-    flex-wrap: nowrap;
+    margin: 2em 0;
+    display: flex;
+    font-size: 0.7em;
     flex-direction: row;
+    align-items: stretch;
     justify-content: flex-start;
+  }
+
+  .Reviews--Link {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
     align-items: stretch;
   }
 
@@ -197,45 +194,45 @@ p {
 
 @media only screen and (min-width: 768px) {
   .Reviews--Content_container {
-    margin: auto;
+    margin: 0 auto;
     width: 100%;
     height: 100%;
-    max-width: 1800px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-around;
   }
 
-  ul {
+  .Reviews--Container ul {
     width: 100%;
-  }
-  .Reviews--Container,
-  .SingleReview--Container {
+    margin: 0 auto;
+    padding-top: 1em;
     display: flex;
-    margin: 4rem;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
   }
-  .Reviews--li_item {
+
+  .Reviews--Link {
+    display: flex;
     width: 100%;
-    height: 100%;
-    padding: 2em 1.5em;
-    min-width: 300px;
-    max-height: 250px;
-    display: inline-flex;
-    text-align: start;
-    flex-wrap: nowrap;
     flex-direction: row;
-    justify-content: flex-start;
     align-items: stretch;
   }
 
-  .Reviews--review_img {
-    width: 9em;
-    height: 9em;
+  .Reviews--li_item {
+    padding: 2em;
+    /* height: 30em; */
+    height: 15rem;
+    background-color: antiquewhite;
+    width: 44%;
+    margin: 1rem;
+    display: flex;
+    font-size: 0.7em;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
 
+  .Reviews--review_img {
+    max-width: 18em;
+    height: 100%;
     object-fit: cover;
   }
 

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { getCommentsByReviewId, patchVotes } from "../api";
+import { getCommentsByReviewId } from "../api";
 import { dateFormatter } from "../utils";
 
 export const Comments = (props) => {
@@ -28,23 +27,24 @@ export const Comments = (props) => {
           <h3>Comments</h3>
           <button>Leave a comment</button>
         </div>
-        <ul>
-          {!comments ? (
-            <p>No Comments</p>
-          ) : (
-            comments.map((comment) => {
+
+        {!comments ? (
+          <p>No Comments</p>
+        ) : (
+          <ul>
+            {comments.map((comment) => {
               return (
-                <article className="Comments--comment_container">
-                  <li key={comment.comment_id} className="Comments--li_item">
+                <li key={comment.comment_id} className="Comments--li_item">
+                  <article className="Comments--comment_container">
                     <h5>{comment.author}</h5>
                     <p>{comment.body}</p>
                     <span>Likes: {comment.votes}</span>
-                  </li>
-                </article>
+                  </article>
+                </li>
               );
-            })
-          )}
-        </ul>
+            })}
+          </ul>
+        )}
       </section>
     </>
   );
