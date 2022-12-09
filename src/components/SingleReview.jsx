@@ -6,15 +6,15 @@ import { dateFormatter } from "../utils";
 import { VoteButton } from "./VoteButton";
 import { Comments } from "./Comments";
 import { ReviewContext } from "./contexts/Review";
-import { LoadingContext } from "./contexts/Loading";
 
 export const SingleReview = () => {
   const { review, setReview } = useContext(ReviewContext);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [votes, setVotes] = useState(0);
   const { review_id } = useParams();
 
   useEffect(() => {
+    if (!review) setLoading(true);
     getReviewById(review_id).then((data) => {
       setReview(dateFormatter(data));
       setVotes(data.votes);

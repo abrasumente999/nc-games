@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from "react";
 import { getCommentsByReviewId } from "../api";
 import { dateFormatter, commentMapper } from "../utils";
 import { CommentAdder } from "./CommentAdder";
-import { LoadingContext } from "./contexts/Loading";
 
 export const Comments = (props) => {
   const [comments, setComments] = useState([]);
