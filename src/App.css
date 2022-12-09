@@ -1,5 +1,7 @@
 * {
   margin: 0;
+  height: auto;
+  width: auto;
   padding: 0;
   text-align: left;
   box-sizing: border-box;
@@ -44,17 +46,19 @@ h1 {
   min-width: 300px;
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-content: center;
   align-items: center;
   flex-direction: row;
   background-color: #19191d;
   text-decoration: none;
-  padding: 1.5em 4em;
+  padding: 1em 0;
+  box-sizing: content-box;
 }
 .Nav a {
   color: #f6f2f0;
   text-decoration: none;
+  font-size: 0.8em;
 }
 .Nav a:hover {
   color: #e16b00;
@@ -63,13 +67,19 @@ h1 {
 }
 
 .Home h2 {
-  margin: 2em;
+  margin: 1.5em;
   font-weight: 200;
-  font-size: 2em;
+  font-size: 2.5em;
   text-align: center;
 }
+.Home h3 {
+  text-align: center;
+  font-weight: 300;
+  color: #e16b00;
+}
 
-.Home--loginLink:hover {
+.Home--loginLink:hover,
+button:hover {
   opacity: 0.5;
   transition-duration: 0.5s;
 }
@@ -82,7 +92,8 @@ h1 {
   background-color: #e16b00;
   color: #f6f2f0;
   font-weight: 250;
-  font-size: 1.5rem;
+  font-size: 1.5em;
+  max-width: 300px;
   color: #f6f2f0;
   text-align: center;
   display: flex;
@@ -115,14 +126,21 @@ h1 {
   text-decoration: none;
   background-color: #f6f2f0;
 }
-
+.Users button {
+  padding: 0.5em 1em;
+  background: #e16b00;
+  border: none;
+  color: #f6f2f0;
+}
 .Reviews--Link {
   font-size: 1em;
   font-weight: 400;
   text-decoration: none;
   min-width: 300px;
 }
-.Reviews--Link a:hover {
+
+a:hover,
+button {
   cursor: pointer;
 }
 .Reviews--Link p {
@@ -143,9 +161,26 @@ h1 {
   width: 100%;
   height: 100%;
 }
+
+.Users--loggedIn {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3em;
+}
+.Users--link {
+  color: #e16b00;
+}
 .Users--li_text {
-  padding-left: 1em;
-  height: 100%;
+  padding: 0 1rem;
+  text-align: center;
+  font-size: 1em;
+}
+.Users--li_text h3 {
+  padding-bottom: 1em;
+  font-size: 1.5em;
+  font-weight: 400;
 }
 
 .SingleReview--Header h2 {
@@ -167,24 +202,103 @@ h1 {
   font-size: 1rem;
   padding: 1rem 0rem;
 }
-
+.Votes {
+  padding-top: 1em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-right: 1em;
+}
+.Votes p {
+  border: solid #e16b00;
+  border-radius: 3px 0 0 3px;
+  padding: 4px 0.5em;
+  font-size: 1em;
+}
+.Votes button {
+  width: 10%;
+  height: 30px;
+  border: 0;
+  border-radius: 0px 3px 3px 0px;
+  bottom: 0;
+  cursor: pointer;
+  font-size: 1em;
+}
+.Votes button:hover {
+  opacity: 100;
+}
 .Comments {
   margin: 1rem 0rem;
 }
 .Comments--header {
+  padding-bottom: 1em;
+  border-bottom: #66666e6f solid 0.05em;
+
   width: 100%;
   display: flex;
 }
 .Comments ul {
   margin: 1rem 0;
-  border-top: #19191d solid 1px;
+  border-bottom: #66666e6f solid 0.05em;
 }
 .Comments--li_item {
-  padding: 2rem 0;
-  border-bottom: #19191d solid 1px;
+  padding: 1em;
+  border-top: #66666e6f solid 0.05em;
+}
+.CommentAdder {
+  min-width: 100%;
+  margin-top: 1em;
+  position: relative;
+}
+.Comments p {
+  padding: 0.5em 0;
+}
+.CommentAdder textarea {
+  display: block;
+  width: 50%;
+  margin: 0.9vw 0;
+  padding: 5px;
+  height: 3em;
+  border: 0;
+  border-radius: 5px;
+  font-size: 1em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+.CommentAdder label {
+  margin-bottom: 0.3em;
+  display: block;
+  text-align: left;
+  font-size: 1em;
+  margin: 0 0 1em 0;
+}
+
+.CommentAdder button,
+.Vote--button {
+  text-align: center;
+  width: 10%;
+  height: 2rem;
+  border: 0;
+  bottom: 0;
+  cursor: pointer;
+  font-size: 1em;
+  position: relative;
+  background: #e16b00;
+  border: none;
+  color: #f6f2f0;
 }
 
 @media only screen and (max-width: 768px) {
+  .Home--loginLink {
+    width: 70%;
+    font-size: 1em;
+    max-width: 300px;
+  }
+  .Home h2 {
+    margin: 2em 1em 1em 1em;
+    font-size: 2em;
+  }
   .Reviews--Content_container {
     width: 100%;
     height: 100%;
@@ -215,32 +329,51 @@ h1 {
     flex-direction: row;
     align-items: stretch;
   }
+  .Users button {
+    padding: 0.5em 0.5em;
+    font-size: 1em;
+    background: #e16b00;
+    border: none;
+    color: #f6f2f0;
+  }
 
   .Users--li_item {
-    padding: 1.5em;
-
-    background-color: antiquewhite;
+    height: 14em;
+    position: relative;
+    background-color: rgb(251, 233, 212);
     width: 60%;
-    min-width: 320px;
-    margin: 2em 0;
+    /* max-width: 0px; */
+    min-width: 300px;
+    padding: 1em;
+    margin: 1rem;
     display: flex;
     font-size: 0.7em;
-    flex-direction: row;
-    align-items: stretch;
+    align-items: center;
+    align-content: flex-start;
     justify-content: space-evenly;
   }
+  .Users--li_text h3 {
+    padding-bottom: 1em;
+    font-size: 1.2em;
+    text-align: center;
+  }
+
   .Users--avatar {
-    height: 14em;
-    width: 14em;
+    height: 100%;
+    width: 12em;
+    /* margin: auto; */
+    /* padding: 1em 0 1em 0.5em; */
     border-radius: 50%;
     overflow: hidden;
     display: flex;
     background-color: #fff;
-    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    flex-direction: row;
   }
   .Users--avatar_img {
-    width: 60%;
     height: auto;
+    width: 100%;
     margin: auto;
   }
 
@@ -289,7 +422,7 @@ h1 {
     height: 15rem;
     background-color: antiquewhite;
     width: 44%;
-    margin: 1rem;
+    margin: 2em auto;
     display: flex;
     font-size: 0.7em;
     flex-direction: row;
@@ -297,16 +430,19 @@ h1 {
     justify-content: flex-start;
   }
   .Users--li_item {
-    padding: 2em;
     height: 15rem;
-    background-color: antiquewhite;
-    width: 44%;
+    background-color: rgb(251, 233, 212);
+    width: 45%;
+    padding: 1rem 3rem;
     margin: 1rem;
+    max-width: 350px;
     display: flex;
     font-size: 0.7em;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
   }
   .Reviews--review_img {
     max-width: 18em;
@@ -314,13 +450,22 @@ h1 {
     object-fit: cover;
   }
   .Users--avatar {
-    height: 14em;
-    width: 14em;
+    height: 60%;
+    width: 12em;
+    /* margin: auto; */
+    /* padding: 1em 0 1em 0.5em; */
     border-radius: 50%;
     overflow: hidden;
     display: flex;
     background-color: #fff;
-    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    flex-direction: row;
+  }
+  .Users--avatar img {
+    height: auto;
+    width: 100%;
+    margin: auto;
   }
 
   .SingleReview--ReviewBody,

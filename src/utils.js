@@ -23,7 +23,7 @@ export const commentMapper = (comments) => {
         <article className="Comments--comment_container">
           <h5>{comment.author}</h5>
           <p>{comment.body}</p>
-          <span>Likes: {comment.votes}</span>
+          <p>Likes: {comment.votes}</p>
         </article>
       </li>
     );

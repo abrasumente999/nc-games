@@ -26,9 +26,11 @@ export const VoteButton = ({ votes, setVotes }) => {
 
   if (err) return <span>{err}</span>;
   return (
-    <button onClick={handleVote}>
-      {votes}
-      <span aria-label="votes for this review">Like 👍</span>
-    </button>
+    <div className="Votes">
+      <p>{votes}</p>
+      <button onClick={handleVote} className="Vote--button">
+        <span aria-label="votes for this review"> Like 👍</span>
+      </button>
+    </div>
   );
 };

@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext } from "react";
 import { getReviews } from "../api";
-import { Link } from "react-router-dom";
 import { Header } from "./Header";
 import { dateFormatter, listAllReviews } from "../utils";
 

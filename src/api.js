@@ -31,6 +31,12 @@ export const patchVotes = (review_id, vote) => {
   });
 };
 
+export const getUsers = () => {
+  return gamesApi.get("/users").then(({ data }) => {
+    return data;
+  });
+};
+
 export const postComment = (review_id, comment) => {
   const postBody = {
     username: comment.username,
@@ -41,10 +47,4 @@ export const postComment = (review_id, comment) => {
     .then(({ data }) => {
       return data;
     });
-};
-
-export const getUsers = () => {
-  return gamesApi.get("/users").then(({ data }) => {
-    return data;
-  });
 };

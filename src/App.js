@@ -1,14 +1,13 @@
 import "./App.css";
-
+import { useContext } from "react";
 import { Nav } from "./components/Nav";
-import { Route, Routes, useParams, BrowserRouter } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Home } from "./components/Home";
 import { Reviews } from "./components/Reviews";
 import { SingleReview } from "./components/SingleReview";
 import { Comments } from "./components/Comments";
 import { Users } from "./components/Users";
-import { UserContext } from "./components/contexts/User";
-import { useContext } from "react";
+import { LoadingContext } from "./components/contexts/Loading";
 
 function App() {
   return (

@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getCommentsByReviewId } from "../api";
 import { dateFormatter, commentMapper } from "../utils";
 import { CommentAdder } from "./CommentAdder";
+import { LoadingContext } from "./contexts/Loading";
 
 export const Comments = (props) => {
   const [comments, setComments] = useState([]);
@@ -17,19 +18,17 @@ export const Comments = (props) => {
       }
       setLoading(false);
     });
-  }, [review_id]);
+  }, [review_id, comments]);
 
   return loading ? (
-    <p className="Loading">... Loading</p>
+    <p>...Loading comments</p>
   ) : (
-    <>
-      <section className="Comments">
-        <div className="Comments--header">
-          <h3>Comments</h3>
-          <CommentAdder review_id={review_id} setComments={setComments} />
-        </div>
-        {!comments ? <p>No Comments</p> : <ul>{commentMapper(comments)}</ul>}
-      </section>
-    </>
+    <section className="Comments">
+      <div className="Comments--header">
+        <h3>Comments</h3>
+      </div>
+      <CommentAdder review_id={review_id} setComments={setComments} />
+      {!comments ? <p>No Comments</p> : <ul>{commentMapper(comments)}</ul>}
+    </section>
   );
 };
