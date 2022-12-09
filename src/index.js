@@ -5,14 +5,18 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ReviewProvider } from "./components/contexts/Review";
+import { UserProvider } from "./components/contexts/User";
+import { LoadingProvider } from "./components/contexts/Loading";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ReviewProvider>
-        <App />
-      </ReviewProvider>
+      <UserProvider>
+        <ReviewProvider>
+          <App />
+        </ReviewProvider>
+      </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
