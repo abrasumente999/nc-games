@@ -6,7 +6,6 @@ import { dateFormatter } from "../utils";
 import { VoteButton } from "./VoteButton";
 import { Comments } from "./Comments";
 import { ReviewContext } from "./contexts/Review";
-import { LoadingContext } from "./contexts/Loading";
 
 export const SingleReview = () => {
   const { review, setReview } = useContext(ReviewContext);
