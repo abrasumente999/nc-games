@@ -4,10 +4,10 @@ import { UserContext } from "./contexts/User";
 import { LoadingContext } from "./contexts/Loading";
 import { Link } from "react-router-dom";
 
-export const CommentAdder = ({ review_id, setComments }) => {
-  const [posted, setPosted] = useState();
+export const CommentAdder = ({ review_id, setComments, setChange }) => {
   const [newComment, setNewComment] = useState("");
   const [textAreaHeight, setTextAreaHeight] = useState(2);
+  const [posted, setPosted] = useState();
   const { loggedInUser } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
 
@@ -30,21 +30,24 @@ export const CommentAdder = ({ review_id, setComments }) => {
       username: loggedInUser.username,
       body: newComment,
     };
-    postComment(review_id, commentToPost)
-      .then((comment) => {
-        setPosted(true);
-
-        setComments((currComments) => {
-          const comments = [...currComments];
-          return comments;
-        });
-        setLoading(false);
-      })
-      .catch((err) => {
-        setPosted(false);
-        setLoading(false);
+    setPosted(true);
+    setComments((currComments) => {
+      const comments = [...currComments];
+      comments.push(newComment);
+      return comments;
+    });
+    postComment(review_id, commentToPost).catch((err) => {
+      setPosted(false);
+      setComments((currComments) => {
+        const comments = [...currComments];
+        comments.pop();
+        return comments;
       });
+    });
     setComments("");
+    setNewComment("");
+    setChange(true);
+    setLoading(false);
   };
 
   return loading ? (

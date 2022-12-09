@@ -9,12 +9,11 @@ import { ReviewContext } from "./contexts/Review";
 
 export const SingleReview = () => {
   const { review, setReview } = useContext(ReviewContext);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [votes, setVotes] = useState(0);
   const { review_id } = useParams();
 
   useEffect(() => {
-    if (!review) setLoading(true);
     getReviewById(review_id).then((data) => {
       setReview(dateFormatter(data));
       setVotes(data.votes);
