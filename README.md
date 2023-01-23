@@ -4,6 +4,10 @@
 You can view the back end repository [HERE](https://github.com/abrasumente999/nc-games-project)
 
 
+---
+
+## Instructions
+
 In the project directory, you can run:
 
 ### `npm start`
